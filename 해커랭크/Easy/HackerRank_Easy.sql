@@ -53,3 +53,12 @@ where city regexp '^[aeiou]'    -- regexp: 정규 표현식, ^: 시작하는 문
 select distinct city
 from station
 where left(city, 1) in ('a', 'e', 'i', 'o', 'u')    -- left(문자열, 길이) : 문자열을 받아서 왼쪽부터 원하는 길이만큼 잘라낸 후 리턴하는 함수
+
+-- Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+select distinct city
+from station
+where city like '%a'
+        or city like '%e'
+        or city like '%i'
+        or city like '%o'
+        or city like '%u'
