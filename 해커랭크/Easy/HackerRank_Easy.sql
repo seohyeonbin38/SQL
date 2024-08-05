@@ -87,4 +87,41 @@ where city regexp '^[^aeiou]' or city regexp '[^aeiou]$'
 select distinct city
 from station
 where left(city,1) not in ('a','e','i','o','u')
-      or right(city,1) not in ('a','e','i','o','u')
+or right(city,1) not in ('a','e','i','o','u')
+
+--Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+select distinct city
+from station
+where left(city,1) not in ('a','e','i','o','u')
+and right(city,1) not in ('a','e','i','o','u')
+
+-- Query the Name of any student in STUDENTS who scored higher than  Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+select name
+from students  
+where marks > 75
+order by right(name, 3), ID
+
+-- Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+select name
+from employee
+order by name
+
+-- Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than  per month who have been employees for less than  months. Sort your result by ascending employee_id.
+select name
+from employee
+where months < 10 and salary > 2000
+order by employee_id asc
+
+-- Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+-- Equilateral: It's a triangle with  sides of equal length.
+-- Isosceles: It's a triangle with  sides of equal length.
+-- Scalene: It's a triangle with  sides of differing lengths.
+-- Not A Triangle: The given values of A, B, and C don't form a triangle.
+select
+      case
+            when A = B and B = C then "Equilateral"
+            when A + B <= C then "Not A Triangle"
+            when A != B and B != C and A != C then "Scalene"
+            else "Isosceles"
+      end
+from triangles
