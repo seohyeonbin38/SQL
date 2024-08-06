@@ -125,3 +125,13 @@ select
             else "Isosceles"
       end
 from triangles
+
+-- Query a count of the number of cities in CITY having a Population larger than 1000000.
+select count(*)
+from city
+where population > 100000
+
+-- Query the total population of all cities in CITY where District is California.
+select sum(population)
+from city
+where district = 'California'
