@@ -135,3 +135,35 @@ where population > 100000
 select sum(population)
 from city
 where district = 'California'
+
+-- Query the average population of all cities in CITY where District is California.
+select avg(population)
+from city
+where district = 'California'
+
+-- Query the average population for all cities in CITY, rounded down to the nearest integer.
+select round(avg(population))
+from city
+
+-- Query the sum of the populations for all Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
+select sum(population)
+from city
+where countrycode = 'JPN'
+
+-- Query the difference between the maximum and minimum populations in CITY.
+select max(population) - min(population)
+from city
+
+-- Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+-- Write a query calculating the amount of error (i.e.:  average monthly salaries), and round it up to the next integer.
+      -- ceil(숫자) : 올림
+      -- round(숫자, 자릿수) : 반올림
+      -- truncate(숫자, 자릿수) : 내림
+      -- floor(숫자) : 소수점 아래 버림
+      -- abs(숫자) : 절댓값
+      -- pow(x, y) : x의 y승
+      -- mod(x, y) : x를 y로 나눈 나머지
+      -- replace('문자열', '기존의 변경될 문자열', '변경할 문자열')
+select ceil(avg(salary) - avg(replace(salary, 0, '')))
+from employees
+
