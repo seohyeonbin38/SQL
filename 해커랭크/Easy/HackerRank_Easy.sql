@@ -172,3 +172,38 @@ select (salary * months) as earnings, count(*)
 from employee
 group by earnings
 order by earnings desc limit 1
+
+-- Query the following two values from the STATION table:
+-- 1. The sum of all values in LAT_N rounded to a scale of  decimal places.
+-- 2. The sum of all values in LONG_W rounded to a scale of  decimal places.
+select round(sum(LAT_N), 2), round(sum(LONG_W), 2)
+from station
+
+-- Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than  and less than . Truncate your answer to  decimal places.
+select truncate(sum(LAT_N), 4)
+from station
+where 38.7880 < LAT_N and LAT_N < 137.2345
+
+-- Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than . Truncate your answer to  decimal places.
+select truncate(LAT_N, 4)
+from station
+where LAT_N < 137.2345
+order by LAT_N desc limit 1
+
+-- Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than . Round your answer to  decimal places.
+select round(LONG_W, 4)
+from station
+where LAT_N < 137.2345
+order by LAT_N desc limit 1
+
+-- Query the smallest Northern Latitude (LAT_N) from STATION that is greater than . Round your answer to  decimal places.
+select round(LAT_N, 4)
+from station
+where LAT_N > 38.7780
+order by LAT_N limit 1
+
+-- Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N) in STATION is greater than . Round your answer to  decimal places.
+select round(LONG_W, 4)
+from station
+where LAT_N > 38.7780
+order by LAT_N limit 1
