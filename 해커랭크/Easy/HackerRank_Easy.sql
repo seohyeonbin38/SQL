@@ -207,3 +207,56 @@ select round(LONG_W, 4)
 from station
 where LAT_N > 38.7780
 order by LAT_N limit 1
+
+-- Query the NAME field for all American cities in the CITY table with populations larger than 120000. The CountryCode for America is USA.
+select name
+from city
+where population > 120000
+and countrycode = 'USA'
+
+-- Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+select sum(a.population)
+from city a, country b
+where a.countrycode = b.code
+and b.continent = 'ASIA'
+
+select sum(a.population)
+from city a
+join country b on a.countrycode = b.code
+where b.continent = 'ASIA'
+
+-- Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+select a.name
+from city a, country b
+where a.countrycode = b.code
+and b.continent = 'Africa'
+
+-- Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+select b.continent, floor(avg(a.population))
+from city a, country b
+where a.countrycode = b.code
+group by b.continent
+
+-- P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+-- * * * * * 
+-- * * * * 
+-- * * * 
+-- * * 
+-- *
+-- Write a query to print the pattern P(20).
+set @number = 21;
+select repeat('* ', @number := @number-1)
+from information_schema.tables
+limit 20;
+
+-- P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+-- * 
+-- * * 
+-- * * * 
+-- * * * * 
+-- * * * * *
+-- Write a query to print the pattern P(20).
+set @number = 0;
+select repeat('* ', @number := @number+1)
+from information_schema.tables
+limit 20;
